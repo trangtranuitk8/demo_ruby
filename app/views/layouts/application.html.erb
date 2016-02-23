@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pragprog Books Online Store</title>
+
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class='<%= controller.controller_name %>'>
+	<div id="banner">
+		<%= image_tag("/assets/book.png", class:'logo') %>
+		<%= @page_title || "Pragmatic Bookshelf" %>
+	</div>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	  
+	    <ul class="nav navbar-nav">  
+	      <li ><%= link_to store_path do %><span class="glyphicon glyphicon-home"></span> Trang chủ	      	
+	      	<% end %>
+	      </li>
+
+	      <li><%= link_to 'Danh mục sách', products_path %></li> 
+	      <% if session[:user_id] %>
+	      	 
+	      	<li class="dropdown">
+			        <a data-toggle="dropdown" href="#">Quản lí người dùng</a>
+			        <ul class="dropdown-menu">
+			        <li></li>
+			            <li><%= link_to "Tạo người dùng", new_user_path %> </li> 
+			             <li><%= link_to "Danh sách người dùng", users_path %> </li> 
+			        </ul>
+			    </li>
+	      <%end%>
+
+	      <li >
+	      	<form>
+			  <input class = "searchtext" type="text" name="search" placeholder="Nhập từ khóa cần tìm...">
+			</form>
+		      
+	      </li>
+
+	      <li><button type="button" class="btn btn-default searchbutton"><span class="glyphicon glyphicon-search"></span></button></li>
+
+	    </ul>
+
+	    
+	    
+	    <ul class="nav navbar-nav navbar-right">
+		    <li><%= link_to cart_path(current_cart.id) do %>  
+		    
+				    <span class="glyphicon glyphicon-shopping-cart"></span> Giỏ hàng
+				    <% if current_cart.total_number > 0 %>
+					    <sup class="total_number_cart"><%= current_cart.total_number%></sup>
+				    	<% end %>
+		    	<% end %>
+		    </li> 
+	    	<% if session[:user_id] %>
+	    	
+	    		<li class="dropdown">
+			        <a data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"> <%= current_user.name %> </a>
+			        <ul class="dropdown-menu">
+			        <li></li>
+			            <li><%= link_to "create user", new_user_path %> </li> 
+			             <li><%= link_to "update user", edit_user_path(current_user) %> </li> 
+			        </ul>
+			    </li>		
+
+				<li>
+					<%= link_to logout_path, method: :delete do%>
+						<span class="glyphicon glyphicon-log-out"></span> Đăng xuất
+					<% end %>
+				</li>
+			<% else %>
+		      <li><%= link_to '', :class => "login", 
+		      :'data-toggle' => 'modal', :'data-target' => '.login-form-app' do %><span class="glyphicon glyphicon-log-in"></span> Đăng nhập</li><% end %>
+			<% end %>
+
+		</ul>
+	  </div>
+	</nav>
+
+<%= yield %> 
+
+</body>
+
+<div class="modal fade login-form-app" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	<%= render :partial => "sessions/form" %>
+    </div>
+  </div>
+</div>
+
+<footer class="text-center">
+  <a class="up-arrow" href="" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>Bootstrap Theme Made By <a href="http://www.w3schools.com" data-toggle="tooltip" title="Visit w3schools">www.w3schools.com</a></p> 
+</footer>
+</html>
