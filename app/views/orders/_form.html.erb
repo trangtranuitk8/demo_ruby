@@ -11,23 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, size: 40 %>
+   <div class="form-group">
+    <%= f.label :name, :class => "lable_form" %><br>
+    <%= f.text_field :name, size: 40, :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area :address, rows: 3 %>
+  <div class="form-group">
+    <%= f.label :address, :class => "lable_form" %><br>
+    <%= f.text_area :address, rows: 3, :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, size: 40 %>
+  <div class="form-group">
+    <%= f.label :email, :class => "lable_form" %><br>
+    <%= f.text_field :email, size: 40, :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :pay_type %><br>
+  <div class="form-group">
+    <%= f.label :pay_type, :class => "lable_form" %><br>
     <%= f.select :pay_type, Order::PAYMENT_TYPES, prompt: 'Select a payment method' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Hoàn tất', :class => 'btn btn-success' %>
   </div>
 <% end %>

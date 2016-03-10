@@ -4,6 +4,7 @@ class StoreController < ApplicationController
 	before_action :set_cart
 
   def index
-  	@products = Product.order(:title)
+  	@products = Product.paginate(page: params[:page], per_page: 8).order("created_at DESC")
+  	@categories = Category.all
   end
 end

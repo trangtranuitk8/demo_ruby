@@ -49,5 +49,11 @@ group :development do
 
 
   gem 'bcrypt-ruby'
+
+
+  # create next-page
+  gem 'will_paginate', '~> 3.0.6'
+  gem 'will_paginate-bootstrap'
+  
 end
 

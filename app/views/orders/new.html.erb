@@ -1,13 +1,44 @@
-<h1>New Order</h1>
 
-<div class="depot_form">
-	<fieldset>
-		<legend>Please Enter Your Details</legend>
-		<%= render 'form' %>
-	</fieldset>
-	<%= link_to 'Back', orders_path %>
+<div class = "row all-edit">
+	<div class= "col-sm-8">
+		<div class="panel panel-default">
+  <div class="panel-body">
+		<table class="table ">
+			<thead> 
+				<tr>
+				  <td><strong>Nhập thông tin khách hàng</strong></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+			        <td><%= render 'form' %></td>
+			    </tr>
+			</tbody>
+		</table>
 </div>
+</div>
+		</div>
+		<div class= "col-sm-4">	
+		<div class= "panel panel-default">	  			  			
+			<div class="panel-body">
+				<table class="table">
+					<thead> 
+						<tr>
+						  <td colspan="3"><h4>Thông tin đơn hàng</h4></td>
+						</tr>
+					</thead>
+					<tbody>
+						<%= render @cart %>
+						<tr>
+						  <td colspan="2"><h4>Thành tiền: </h4></td>	
+						  <td class="total-price-table"><h4><%= number_to_currency(@cart.total_price) %></h4></td>			  
+						</tr>
+					</tbody>
+				</table>
 
-
-
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
 

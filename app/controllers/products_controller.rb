@@ -1,25 +1,35 @@
 class ProductsController < ApplicationController
+  skip_before_action :authorize, only: [:show, :index]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  include CurrentCart
+  before_action :set_cart
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
     
+    if params[:search]
+      @products = Product.paginate(page: params[:page], per_page: 8).search(params[:search]).order("created_at DESC")
+    else
+      @products = Product.paginate(page: params[:page], per_page: 8).order("created_at DESC")
+    end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    @products = Product.search_product(params[:id]).take(3)
   end
 
   # GET /products/new
   def new
     @product = Product.new
+    @categories = Category.all
   end
 
   # GET /products/1/edit
   def edit
+    @categories = Category.all
+    # @product.categories.build
   end
 
   # POST /products
@@ -59,7 +69,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to products_path, notice:  "product has been deleted."
+    # redirect_to products_path, notice:  "product has been deleted."
     
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
@@ -86,6 +96,9 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price, :upload_image)
+      params.require(:product).permit(:title, :description, :price, :upload_image, categories: [])
     end
+
+
+
 end

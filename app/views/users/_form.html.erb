@@ -10,20 +10,20 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, :class => "lable_form" %><br>
+    <%= f.text_field :name, :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
+  <div class="form-group">
+    <%= f.label :password, :class => "lable_form" %><br>
+    <%= f.password_field :password, :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, :class => "lable_form" %><br>
+    <%= f.password_field :password_confirmation, :class => "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Cập nhật người dùng', :class => 'btn btn-default'%>
+    <%= link_to 'Back', users_path, :class => 'btn btn-default' %>
   </div>
 <% end %>

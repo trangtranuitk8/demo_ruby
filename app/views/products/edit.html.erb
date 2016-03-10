@@ -1,6 +1,17 @@
-<h1>Editing Product</h1>
+<div class = "row product-edit">
+	<table class="table">
+    <thead>
+      <tr>
+        <th><h3>Cập nhật thông tin sản phẩm</h3></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= render 'form' %></td>
+      </tr>
+    </tbody>
+  </table>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+  <%= link_to 'Show', @product %> |
+	<%= link_to 'Back', products_path %>
+</div>

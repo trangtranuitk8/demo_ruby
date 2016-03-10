@@ -4,7 +4,7 @@
 
 
 $(document).on "ready, page:change", ->
-	$('.store .text-left > img').click ->
+	$('.store .producttype > img').click ->
 		$(this).parent().find(':submit').click()
 
 

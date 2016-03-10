@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
 
 
-
-
     protected
 	def authorize
 		unless User.find_by(id: session[:user_id])

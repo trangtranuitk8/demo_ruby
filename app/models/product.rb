@@ -1,9 +1,13 @@
 class Product < ActiveRecord::Base
 	has_many :line_items
 	has_many :orders, through: :line_items
+	has_and_belongs_to_many :categories, join_table: :categories_products
+	
 	before_destroy :ensure_not_referenced_by_any_line_item
     
+	accepts_nested_attributes_for :categories,  :reject_if => :all_blank, :allow_destroy => true
 
+	
 	validates :title, :description, presence: true
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
 	validates :title, uniqueness: true
@@ -41,5 +45,14 @@ class Product < ActiveRecord::Base
 	  end
 
 
+	def self.search(query)
+    	where("title like ?", "%#{query}%") 
+  	end
 
+  	def self.search_product(id_product)   		
+    	var_p = Product.includes(:categories).where("products.id = ?", "#{id_product}")
+    	var_cate = var_p.first.categories    	
+    	Product.joins(:categories).where("categories.id in (?) and products.id <> ?", var_cate.map{|c| c.id},id_product ).uniq	
+  	end
+  
 end

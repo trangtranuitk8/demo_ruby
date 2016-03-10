@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /orders
   # GET /orders.json
   def index
@@ -32,17 +32,21 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+
     @order.add_line_items_from_cart(@cart)
+
     respond_to do |format|
+      format.html { redirect_to store_index_url }
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         # gui mail
-        OrderNotifier.received(@order).deliver
+         OrderNotifier.received(@order).deliver_now
         # format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.html { redirect_to store_url }
         format.json { render :show, status: :created, location: @order }
       else
+        p '------'
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end

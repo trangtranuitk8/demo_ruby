@@ -1,0 +1,25 @@
+<div class="container">
+<% if @products.present? %>
+	
+	  <table class="table table-product ">
+	    <thead> 
+	      <tr>
+	        <td><h3>Danh sách sản phẩm</h3></td>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr>
+	        <td><%= render 'products/product' %></td>
+	      </tr>
+	    </tbody>
+	  </table>
+	
+<% else %>
+	<div class="col-sm-12">
+		<%= image_tag('/assets/Ecommerce-Development.png', class:'image-cart') %>
+		<div class="panel panel-info">
+		    <div class="panel-body panelcart">Không có sản phẩm nào thuộc thể loại này</div>
+		</div>
+	</div>
+<% end %>
+</div>

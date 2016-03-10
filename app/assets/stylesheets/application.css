@@ -14,13 +14,7 @@
  *= require_self
  */
 
- .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-        width: 70%;
-    	height: 400px;
-        margin: auto;
-        
-  }
+
 #banner {
 	background: #9c9;
 	padding: 10px;
@@ -62,7 +56,7 @@
 			list-style: none;
 			a {
 			color: #bfb;
-			font-size: small;
+			font-size: 14px;
 			}
 		}
 	}
@@ -79,33 +73,19 @@ input {
 	color:
 	white;
 }
-table {
-	border-top:	1px dotted #595;
-	border-bottom: 1px dotted #595;
-	margin-bottom: 10px;
-}
-table > ul {
-	padding: 0;
-}
-table > ul > li {
-	list-style: none;
-}
-table >ul > li > a {
-	color: #bfb;
-	font-size: small;
-}
+
 
 .searchtext {
     width: 100%;
     height: 30px;
     border: 2px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
     background-color: white;
     background-position: 10px 10px; 
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    margin-top: 10px;
+    padding: 12px 20px 12px 20px;
+
 }
 
 .searchbutton{
@@ -120,11 +100,10 @@ footer {
       color: #282;
       padding: 32px;
   }
-  footer a {
+  /*footer a {
       color: #f5f5f5;
-  }
+  }*/
   footer a:hover {
-      color: #777;
       text-decoration: none;
   }  
   .form-control {
@@ -138,3 +117,36 @@ footer {
  	color: red;
  	font-size: 14px;
  }
+
+.navbar{
+	padding-left: 50px;
+	padding-right: 50px;
+	margin-bottom: 15px;
+}
+
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+a {
+	text-decoration: none;
+}
+
+.panelcart{
+	background-color: #bce8f1;
+	font-size: 20px;
+	color: #31708f; 
+	text-align: center;
+}

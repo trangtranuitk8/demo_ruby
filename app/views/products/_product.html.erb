@@ -1,0 +1,45 @@
+<div class="row product-row">
+     
+        <% @products.each do |product| %>
+          
+            <div class="col-sm-3 text-left producttype">
+              <%= link_to product do%>
+              <%= image_tag(product.upload_image, class:'thumbnail') %>
+              <% end %>
+              <div class = "product-title">
+                <h4><%= product.title %></h4>
+              </div>
+              <div class = "product-des">
+                <dd><%= truncate(strip_tags(product.description), length: 80) %></dd>
+              </div>
+              <div class="price_line">
+                <!-- <span class="price"><%= product.price %></span> -->
+                <span class="price"><%= number_to_currency(product.price) %></span>
+                </div>
+                <div>
+                
+                  <%= button_to line_items_path(product_id: product),remote: true,
+          :'data-toggle' => 'modal', :'data-target' => '.cart-form-app', :class => "btn btn-default add_cart" do%>
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Thêm vào giỏ hàng
+                  <% end%>
+              </div>
+            </div>
+          
+      <% end %>
+    
+  </div>
+
+<div class="modal fade cart-form-app" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content alert alert-success">
+      
+        <p>Sản phẩm đã được thêm vào giỏ hàng</p>
+      
+        <p >Hiện đang có <strong class="total_number_cart"><%= current_cart.total_number%></strong> sản phẩm trong giỏ hàng của bạn</p>
+      
+      <%= button_to 'Tiếp tục mua hàng',store_index_path, method: :get, :class => "btn btn-primary by_product" %>
+      <%= button_to "Thanh toán", new_order_path, method: :get, :class => "btn btn-success" %>
+      
+    </div>
+  </div>
+</div>

@@ -3,7 +3,25 @@
 <% else %>
 <tr>
 <% end %>
-<td><%= line_item.quantity %>&times;</td>
-<td><%= line_item.product.title %></td>
-<td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+	<td>
+        <%= image_tag(line_item.product.upload_image, class: 'list_image') %>
+    </td>
+    <td ><p><%= line_item.product.title %></p>
+    <p><%= truncate(strip_tags(line_item.product.description), length: 150) %></p>
+
+    </td>
+
+	<td class="quantity<%= line_item.product.id %>"><%= line_item.quantity %></td>
+	
+	<td class="item_price "><%= number_to_currency(line_item.total_price) %></td>
+	<td>
+		<%= button_to line_items_path(product_id: line_item.product.id),remote: true, :class => "btn btn-default add_cart"  do %><span class="glyphicon glyphicon-shopping-cart"></span> Thêm sản phẩm
+		<% end%>
+
+		<br>
+
+		<%= button_to 'Xóa sản phẩm', line_item, method: :delete, :class => "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+	
+	</td>
 </tr>
+
