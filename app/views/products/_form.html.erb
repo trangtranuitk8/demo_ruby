@@ -31,11 +31,15 @@
     <%= f.text_field :price, :class => "form-control" %>
   </div>
   
- 
+    <%= f.select(:categories, @categories.collect {|p| [ p.name, p.id ] },{ :prompt => "Please select"}, {:multiple => true, class: "input-category"} ) %>
+
   <div class="actions">
     <%= f.submit 'Cập nhật sản phẩm', :class => 'btn btn-default' %>
     <%= link_to 'Back', products_path, :class => 'btn btn-default' %>
   </div>
+
+
+
 
 <% end %>
 

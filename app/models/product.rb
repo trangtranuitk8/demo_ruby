@@ -54,5 +54,10 @@ class Product < ActiveRecord::Base
     	var_cate = var_p.first.categories    	
     	Product.joins(:categories).where("categories.id in (?) and products.id <> ?", var_cate.map{|c| c.id},id_product ).uniq	
   	end
-  
+  	def self.search_products_category()
+  		(byebug)
+  		var_ss = Product.joins(:categories)
+  		var_ss.select('categogies_products.category_id')
+  	end
+
 end
